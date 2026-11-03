@@ -4,6 +4,10 @@ This is the backend (REST API) for **Kindred**, a community event platform where
 
 Built with Express, TypeScript and MongoDB. Login itself happens on the Next.js client with Better Auth, this server only checks the JWT that Better Auth gives.
 
+- **Live site:** https://kindred-events.vercel.app
+- **Live API:** https://kindred-server-nine.vercel.app (try [`/api/events`](https://kindred-server-nine.vercel.app/api/events))
+- **Client repo:** https://github.com/Md-Foisal/kindred-client
+
 ## How auth works here
 
 1. User logs in on the client (email/password, Google or GitHub).
