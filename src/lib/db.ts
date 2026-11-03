@@ -8,19 +8,24 @@ let indexesReady = false;
 
 async function getDb(): Promise<Db> {
   if (!clientPromise) {
-    clientPromise = new MongoClient(config.mongoUri).connect();
+    // forget a failed connect so the next request can try again
+    clientPromise = new MongoClient(config.mongoUri).connect().catch((err) => {
+      clientPromise = null;
+      throw err;
+    });
   }
   const client = await clientPromise;
   const db = client.db(config.dbName);
 
   if (!indexesReady) {
-    indexesReady = true;
     await Promise.all([
       db.collection("events").createIndex({ eventDate: 1 }),
       db.collection("events").createIndex({ creatorEmail: 1 }),
       db.collection("joins").createIndex({ eventId: 1, userEmail: 1 }, { unique: true }),
       db.collection("joins").createIndex({ userEmail: 1 }),
     ]);
+    // only mark done after it worked, so a failed try runs again next time
+    indexesReady = true;
   }
   return db;
 }
