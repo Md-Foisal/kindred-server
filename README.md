@@ -7,6 +7,7 @@ Built with Express, TypeScript and MongoDB. Login itself happens on the Next.js 
 - **Live site:** https://kindred-events.vercel.app
 - **Live API:** https://kindred-server-nine.vercel.app (try [`/api/events`](https://kindred-server-nine.vercel.app/api/events))
 - **Client repo:** https://github.com/Md-Foisal/kindred-client
+- **Demo video:** https://youtu.be/gdyQ4FAR8_4
 
 ## How auth works here
 
